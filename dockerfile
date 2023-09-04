@@ -20,4 +20,4 @@ COPY --from=BUILD /target/Fioo-0.0.1-SNAPSHOT.jar fioo.jar
 
 EXPOSE 8084
 
-ENTRYPOINT ["java", "-jar", "nikinho.jar"]
+ENTRYPOINT ["java", "-jar", "fioo.jar"]
