@@ -1,6 +1,6 @@
 package com.example.Fioo.Guardian.Model;
 
-import com.example.Fioo.Guardian.Dto.GuardianInsertDto;
+import com.example.Fioo.Guardian.Dto.*;
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
