@@ -13,12 +13,13 @@ public class GuardianService {
         this.repo = repo;
     }
 
-    public ResponseEntity<String> insertGuardian(Guardian guardian) {
-        try {
-            repo.save(guardian);
-        } catch (Exception err) {
-            throw err;
-        }
-        return ResponseEntity.ok("Guardião Inserido com sucesso!");
-    }
+//    public ResponseEntity<String> insertGuardian(Guardian guardian) {
+//        try {
+//           repo.save(guardian);
+//        } catch (Exception err) {
+//            throw err;
+//            return ResponseEntity.badRequest().body("Erro ao inserir Guardião");
+//        }
+ //       return ResponseEntity.ok("Guardião Inserido com sucesso!");
+ //   }
 }
