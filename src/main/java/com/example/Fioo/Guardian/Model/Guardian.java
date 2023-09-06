@@ -1,5 +1,6 @@
 package com.example.Fioo.Guardian.Model;
 
+import com.example.Fioo.Guardian.Dto.GuardianInsertDto;
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -19,7 +20,7 @@ public class Guardian {
     private Long codGuardian;
 
     @Column
-    private Long guardiaName;
+    private String guardiaName;
 
     @Column
     private String email;
@@ -31,5 +32,13 @@ public class Guardian {
     private String kinship;
 
     @Column
-    private Long codStudentFK;
+    private Long codStudent;
+
+    public Guardian(GuardianInsertDto guardian) {
+        this.guardiaName = guardian.guardianName();
+        this.email = guardian.email();
+        this.CPF = guardian.cpf();;
+        this.kinship = guardian.kinship();
+        this.codStudent = guardian.codStudent();
+    }
 }

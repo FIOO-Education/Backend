@@ -2,12 +2,12 @@ package com.example.Fioo.Student;
 
 import com.example.Fioo.Guardian.GuardianRepository;
 import com.example.Fioo.Guardian.Model.Guardian;
+import com.example.Fioo.Guardian.Dto.GuardianInsertDto;
+import com.example.Fioo.Student.Dto.StudentInsertDto;
 import com.example.Fioo.Student.Model.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-
-import java.security.Guard;
 
 @Service
 public class StudentService {
@@ -20,10 +20,10 @@ public class StudentService {
         this.gRepo = gRepo;
     }
 
-    public ResponseEntity<String> registerUser(Student student, Guardian guardian){
+    public ResponseEntity<String> registerUser(StudentInsertDto student, GuardianInsertDto guardian){
         try {
-            repo.save(student);
-            gRepo.save(guardian);
+            repo.save(new Student(student));
+            gRepo.save(new Guardian(guardian));
         } catch (Exception err) {
             throw err;
         }
