@@ -18,9 +18,4 @@ public class StudentController {
     public StudentController(StudentService studentService) {
         this.studentService = studentService;
     }
-
-    @PostMapping("/insert")
-    public void registerUser(StudentInsertDto student, GuardianInsertDto guardian) {
-        studentService.registerUser(student, guardian);
-    }
 }
