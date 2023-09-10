@@ -15,7 +15,7 @@ public class Guardian {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long codGuardian;
 
-    private String guardiaName;
+    private String guardianName;
 
     private String email;
 
@@ -24,12 +24,12 @@ public class Guardian {
     private String kinship;
 
     private Long codStudent;
-    public Guardian(GuardianInsertDto guardian) {
-        this.guardiaName = guardian.guardianName();
-        this.email = guardian.email();
-        this.CPF = guardian.cpf();;
-        this.kinship = guardian.kinship();
-        this.codStudent = guardian.codStudent();
+    public Guardian(String guardianName, String email, String CPF, String kinship, Long codStudent) {
+        this.guardianName = guardianName;
+        this.email = email;
+        this.CPF = CPF;
+        this.kinship = kinship;
+        this.codStudent = codStudent;
     }
 
     public Guardian() {

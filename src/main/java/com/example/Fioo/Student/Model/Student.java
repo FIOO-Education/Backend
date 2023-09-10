@@ -25,10 +25,10 @@ public class Student {
 
     private Long imageStudent;
 
-    public Student(StudentInsertDto data) {
-        this.username = data.username();
-        this.codEducationLevel = data.codEducationLevel();
-        this.codStudentLevel = data.codEducationLevel();
-        this.imageStudent = data.imageStudent();
+    public Student(String username, Long codEducationLevel, Long codStudentLevel, Long imageStudent) {
+        this.username = username;
+        this.codEducationLevel = codEducationLevel;
+        this.codStudentLevel = codEducationLevel;
+        this.imageStudent = imageStudent;
     }
 }
