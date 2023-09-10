@@ -1,6 +1,5 @@
 package com.example.Fioo.Guardian.Model;
 
-import com.example.Fioo.Guardian.Dto.*;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

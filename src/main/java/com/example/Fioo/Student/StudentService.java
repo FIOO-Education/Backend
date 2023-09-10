@@ -1,9 +1,5 @@
 package com.example.Fioo.Student;
 
-import com.example.Fioo.Guardian.GuardianRepository;
-import com.example.Fioo.Guardian.Model.Guardian;
-import com.example.Fioo.Guardian.Dto.*;
-import com.example.Fioo.Student.Dto.StudentInsertDto;
 import com.example.Fioo.Student.Model.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
