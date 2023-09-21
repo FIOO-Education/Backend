@@ -3,7 +3,7 @@ FROM maven:3.8.3-openjdk-17 AS BUILD
 
 COPY . .
 
-RUN mvn clean package -DskipTests=true #Compilar/Buildar o projeto maven, pulando os testes
+RUN mvn clean install -DskipTests=true #Compilar/Buildar o projeto maven, pulando os testes
 
 #Stage Package
 
