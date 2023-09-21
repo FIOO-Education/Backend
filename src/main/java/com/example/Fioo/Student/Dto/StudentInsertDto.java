@@ -4,7 +4,7 @@ public record StudentInsertDto(
         String username,
         Long codEducationLevel,
         Long codStudentLevel,
-        Long imageStudent,
+        Long studentImage,
         String guardianName,
         String email,
         String cpf,
