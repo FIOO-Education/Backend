@@ -29,7 +29,7 @@ public class StudentController {
     public ResponseEntity<String> insertUser(@RequestBody StudentInsertDto std) {
         try {
             guardianService.insertGuardian(new Guardian(std.guardianName(), std.email(), std.cpf(), std.kinship(), std.codStudent()));
-            studentService.registerUser(new Student(std.username(), std.codEducationLevel(), std.codStudentLevel(), std.imageStudent()));
+            studentService.registerUser(new Student(std.username(), std.codEducationLevel(), std.codStudentLevel(), std.studentImage()));
         } catch (Exception err) {
             err.printStackTrace();
         }
