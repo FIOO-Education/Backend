@@ -17,16 +17,16 @@ public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "userName")
+    @Column(name = "username")
     private String username;
-    @Column(name = "educationLevel")
+    @Column(name = "educationlevel")
 
     private String educationLevel;
-    @Column(name = "cognitiveLevel")
+    @Column(name = "cognitivelevel")
     private String cognitiveLevel;
     @Column(name = "image")
     private String image;
-    @Column(name = "codGuardian")
+    @Column(name = "codguardian")
 
     private Long codGuardian;
 

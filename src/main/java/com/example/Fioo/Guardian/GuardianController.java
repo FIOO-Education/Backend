@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/guardian")
+@RequestMapping("/guardian")
 public class GuardianController {
     @Autowired
     private GuardianService guardianService;

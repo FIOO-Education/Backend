@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/student")
+@RequestMapping("/student")
 public class StudentController {
     private StudentService studentService;
     @Autowired
@@ -44,12 +44,10 @@ public class StudentController {
 
     @GetMapping("/{email}")
     public ResponseEntity<Optional<Student>> getStudent(@PathVariable String email) {
-        try {
-            Optional<Student> payload = studentService.getStudentByEmail(email);
+        Optional<Student> payload = studentService.getStudentByEmail(email);
+        if(payload.isPresent()) {
             return ResponseEntity.ok(payload);
-        } catch (Exception err) {
-            err.printStackTrace();
+        }else
             return ResponseEntity.notFound().build();
         }
-    }
 }

@@ -16,7 +16,7 @@ public class Guardian {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long codGuardian;
-    @Column(name = "guardianName")
+    @Column(name = "guardianname")
     private String guardianName;
 
     @Column(name = "email")
@@ -27,7 +27,7 @@ public class Guardian {
     private String kinship;
     @Column(name = "phone")
     private String phone;
-    @Column(name = "passwordHash")
+    @Column(name = "passwordhash")
     private String passwordHash;
     public Guardian(GuardianInsertDto gdo) {
         this.guardianName = gdo.guardianName();
