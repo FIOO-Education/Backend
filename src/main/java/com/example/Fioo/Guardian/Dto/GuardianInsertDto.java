@@ -4,7 +4,8 @@ public record GuardianInsertDto(
         String guardianName,
         String email,
         String cpf,
-        String kinship,
-        Long codStudent
+        String phone,
+        String passwordHash,
+        String kinship
 ) {
 }

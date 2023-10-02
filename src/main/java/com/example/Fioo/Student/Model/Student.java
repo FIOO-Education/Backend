@@ -17,18 +17,24 @@ public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(name = "username")
     private String username;
+    @Column(name = "educationlevel")
 
-    private Long codEducationLevel;
+    private String educationLevel;
+    @Column(name = "cognitivelevel")
+    private String cognitiveLevel;
+    @Column(name = "image")
+    private String image;
+    @Column(name = "codguardian")
 
-    private Long codStudentLevel;
+    private Long codGuardian;
 
-    private Long imageStudent;
-
-    public Student(String username, Long codEducationLevel, Long codStudentLevel, Long imageStudent) {
-        this.username = username;
-        this.codEducationLevel = codEducationLevel;
-        this.codStudentLevel = codEducationLevel;
-        this.imageStudent = imageStudent;
+    public Student(StudentInsertDto sto) {
+        this.username = sto.username();
+        this.educationLevel = sto.educationLevel();
+        this.cognitiveLevel = sto.cognitiveLevel();
+        this.image = sto.image();
+        this.codGuardian = sto.codGuardian();
     }
 }
