@@ -1,13 +1,14 @@
 package com.example.Fioo.Curriculum;
 
+import com.example.Fioo.ApiResponse;
 import com.example.Fioo.Curriculum.Model.Curriculum;
-import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.HttpServerErrorException;
 
 import java.util.List;
 import java.util.Optional;
@@ -21,8 +22,8 @@ public class CurriculumController {
         this.curriculumService = curriculumService;
     }
     @GetMapping("")
-    public ResponseEntity<List<Curriculum>> getCurriculums() {
-        return ResponseEntity.ok(curriculumService.getAll());
+    public ApiResponse<List<Curriculum>> getCurriculums() {
+        return curriculumService.getAll();
     }
 
     @GetMapping("/{id}")
@@ -35,13 +36,13 @@ public class CurriculumController {
         }
     }
 
-    @GetMapping("/getStudentCurriculum/{id}")
-    public ResponseEntity<Curriculum> getStudentCurriculum(@PathVariable Long id) {
-        return ResponseEntity.ok(curriculumService.getStudentCurriculum(id));
+    @GetMapping("/student/{id}")
+    public ApiResponse<List<Curriculum>> getStudentCurriculum(@PathVariable Long id) {
+        return curriculumService.getStudentCurriculum(id);
     }
 
-    @GetMapping("/getConsecutiveDays/{id}")
-    public ResponseEntity<Integer> getStudentConsecutiveDays(@PathVariable Long id) {
-        return ResponseEntity.ok(curriculumService.getConsecutiveDays(id));
+    @GetMapping("/consecutiveDays/{id}")
+    public void getStudentConsecutiveDays(@PathVariable Long id) {
+        //return curriculumService.getConsecutiveDays(id);
     }
 }
