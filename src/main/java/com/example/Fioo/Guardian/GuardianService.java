@@ -1,14 +1,12 @@
 package com.example.Fioo.Guardian;
 
-import com.example.Fioo.Guardian.Dto.GuardianInsertDto;
+import com.example.Fioo.Guardian.Dto.GetGuardianDTO;
+import com.example.Fioo.Guardian.Dto.PostGuardianDTO;
 import com.example.Fioo.Guardian.Model.Guardian;
-import com.example.Fioo.Student.Model.Student;
-import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.security.Guard;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,14 +14,18 @@ import java.util.Optional;
 public class GuardianService {
     private GuardianRepository repo;
 
-    @Autowired(required = true )
+    @Autowired
     public GuardianService(GuardianRepository guardianRepository) {
         this.repo = guardianRepository;
     }
 
-    public Guardian insertGuardian(GuardianInsertDto guardian) {
-        System.out.println(guardian);
-        System.out.println(new Guardian(guardian));
+    public List<GetGuardianDTO> getGuardians() {
+        ArrayList<GetGuardianDTO> arr = new ArrayList<GetGuardianDTO>();
+        repo.findAll().stream().map((el) -> arr.add(new GetGuardianDTO(el)));
+        return arr;
+    }
+
+    public Guardian insertGuardian(PostGuardianDTO guardian) {
         Guardian payload = repo.save(new Guardian(guardian));
         return payload;
     }

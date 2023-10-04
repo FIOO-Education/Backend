@@ -1,14 +1,18 @@
 package com.example.Fioo.Student;
 
+import com.example.Fioo.ApiResponse;
 import com.example.Fioo.Guardian.GuardianService;
 import com.example.Fioo.Guardian.Model.Guardian;
 import com.example.Fioo.Student.Dto.StudentInsertDto;
 import com.example.Fioo.Student.Model.Student;
 import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.security.Guard;
 import java.util.List;
 import java.util.Optional;
@@ -23,31 +27,18 @@ public class StudentController {
     ) {
         this.studentService = studentService;
     }
-    @PostMapping("")
-    public ResponseEntity<Student> insertStudent(@RequestBody StudentInsertDto std) {
-        try {
-            Student payload = studentService.registerStudent(std);
-            return ResponseEntity.ok(payload);
-        } catch (Exception err) {
-            return ResponseEntity.badRequest().body(new Student(std));
-        }
+    @PostMapping
+    public ApiResponse<Student> insertStudent(@RequestBody @Valid StudentInsertDto std) {
+        return studentService.registerStudent(std);
     }
 
-    @GetMapping("")
-    public ResponseEntity<List<Student>> getUsers() {
-        try {
-            return ResponseEntity.ok(studentService.getStudents());
-        } catch (Exception err) {
-            return ResponseEntity.notFound().build();
-        }
+    @GetMapping
+    public ApiResponse<List<Student>> getUsers() {
+        return studentService.getStudents();
     }
 
     @GetMapping("/{email}")
     public ResponseEntity<Optional<Student>> getStudent(@PathVariable String email) {
-        Optional<Student> payload = studentService.getStudentByEmail(email);
-        if(payload.isPresent()) {
-            return ResponseEntity.ok(payload);
-        }else
-            return ResponseEntity.notFound().build();
-        }
+        return ResponseEntity.ok(studentService.getStudentByEmail(email));
+    }
 }

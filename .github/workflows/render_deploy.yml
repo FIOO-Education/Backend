@@ -1,0 +1,19 @@
+name: Subindo Back-End FIOO Education
+
+on: 
+  push:
+    branches: [ PROD ]
+  pull_request:
+    branches: [ PROD ]
+    
+jobs:
+  
+  build-linux:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Deploy automático no render
+      uses: johnbeynon/render-deploy-action@v0.0.8
+      with:
+        service-id: ${{ secrets.BACKEND_LUCAS_DEPLOYHOOK }}
+        api-key: ${{ secrets.LUCAS_APIKEY }}

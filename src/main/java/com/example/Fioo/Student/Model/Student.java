@@ -1,6 +1,7 @@
 package com.example.Fioo.Student.Model;
 
 import com.example.Fioo.Student.Dto.StudentInsertDto;
+import com.example.Fioo.Student.Enums.StudentLevel;
 import com.example.Fioo.Student.StudentController;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -23,7 +24,7 @@ public class Student {
 
     private String educationLevel;
     @Column(name = "cognitivelevel")
-    private String cognitiveLevel;
+    private StudentLevel cognitiveLevel;
     @Column(name = "image")
     private String image;
     @Column(name = "codguardian")

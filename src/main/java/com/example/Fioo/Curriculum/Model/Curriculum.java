@@ -23,15 +23,6 @@ public class Curriculum {
     private Long codStudent;
     @Column(name = "grade")
     private double grade;
-    @Column(name = "realizationdata")
-    private Date realizationData;
-
-    public Curriculum(Optional<Curriculum> c) {
-        this.codGrade = c.get().getCodGrade();
-        this.codActivity = c.get().getCodActivity();
-        this.codStudent = c.get().getCodStudent();
-        this.grade = c.get().getGrade();
-        this.realizationData = c.get().getRealizationData();
-    }
-
+    @Column(name = "realizationdate")
+    private Date realizationDate;
 }

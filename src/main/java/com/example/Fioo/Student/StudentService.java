@@ -1,5 +1,6 @@
 package com.example.Fioo.Student;
 
+import com.example.Fioo.ApiResponse;
 import com.example.Fioo.Guardian.GuardianRepository;
 import com.example.Fioo.Guardian.GuardianService;
 import com.example.Fioo.Guardian.Model.Guardian;
@@ -7,8 +8,11 @@ import com.example.Fioo.Student.Dto.StudentInsertDto;
 import com.example.Fioo.Student.Model.Student;
 import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpClientErrorException;
 
 import java.security.Guard;
 import java.util.List;
@@ -25,19 +29,27 @@ public class StudentService {
         this.guardianRepo = guardianService;
     }
 
-    public Student registerStudent(StudentInsertDto studentInsertDto){
-        Student payload = repo.save(new Student(studentInsertDto));
-        return payload;
+    public ApiResponse<Student> registerStudent(StudentInsertDto studentInsertDto){
+        try {
+            return new ApiResponse<>(200, "Success", new Student(studentInsertDto));
+        } catch (HttpClientErrorException.BadRequest e) {
+            e.printStackTrace();
+            return new ApiResponse<>(400, "Invalid request body :/", null);
+        }
+
     }
 
-    public List<Student> getStudents() {
-        List<Student> students = repo.findAll();
-        return students;
+    public ApiResponse<List<Student>> getStudents() {
+        try {
+            return new ApiResponse<>(200, "Success", repo.findAll());
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ApiResponse<>(500, "Internal Server Error", null);
+        }
     }
 
     public Optional<Student> getStudentByEmail(String email) {
         Optional<Guardian> payload = guardianRepo.getGuardianByEmail(email);
-        Guardian guardian = payload.get();
-        return Optional.of(repo.findStudentByCodGuardian(guardian.getCodGuardian()));
+        return Optional.of(repo.findStudentByCodGuardian(payload.get().getCodGuardian()));
     }
 }
