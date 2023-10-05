@@ -1,6 +1,6 @@
 package com.example.Fioo.Guardian.Model;
 
-import com.example.Fioo.Guardian.Dto.GuardianInsertDto;
+import com.example.Fioo.Guardian.Dto.PostGuardianDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -29,7 +29,7 @@ public class Guardian {
     private String phone;
     @Column(name = "passwordhash")
     private String passwordHash;
-    public Guardian(GuardianInsertDto gdo) {
+    public Guardian(PostGuardianDTO gdo) {
         this.guardianName = gdo.guardianName();
         this.email = gdo.email();
         this.CPF = gdo.cpf();
