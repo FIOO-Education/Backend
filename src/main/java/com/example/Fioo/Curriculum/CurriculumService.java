@@ -4,7 +4,9 @@ import com.example.Fioo.ApiResponse;
 import com.example.Fioo.Curriculum.Model.Curriculum;
 import com.example.Fioo.MessageRequest;
 import com.sun.net.httpserver.HttpServer;
+import org.hibernate.type.descriptor.DateTimeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cglib.core.Local;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
@@ -13,6 +15,8 @@ import org.springframework.web.client.HttpServerErrorException;
 import java.net.http.HttpResponse;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.temporal.TemporalAccessor;
 import java.util.*;
 
 @Service
@@ -70,23 +74,26 @@ public class CurriculumService {
     //ConsecutiveDaysReponse
     public ApiResponse<Integer> getConsecutiveDays(Long id) {
         try {
-            List<Curriculum> payload = curriculumRepository.findAllByCodStudentOrderByRealizationDate(id);
-            int consecutive = 0;
-
-            if (payload.get(0).getRealizationDate().getMonth() + 1 == LocalDate.now().getMonthValue() && LocalDate.now().getYear() == payload.get(0).getRealizationDate().getYear()) {
-                consecutive = 1;
+            List<Curriculum> payload = curriculumRepository.findAllByCodStudentOrderByRealizationDateDesc(id);
+            if(payload.size() > 0) {
+                Integer days = 0;
+                LocalDate comparationDate = payload.get(0).getRealizationDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                if(!comparationDate.equals(LocalDate.now()) && !comparationDate.equals(LocalDate.now().minusDays(1))) {
+                    return new ApiResponse<>(HttpStatus.OK.value(), MessageRequest.SUCCESS.getMessage(), 0);
+                }
                 for (Curriculum c : payload) {
-                    if (c.getRealizationDate().getDay() + 1 == c.getRealizationDate().getDay() + 1) {
-                        consecutive += 1;
+                    LocalDate localDate = c.getRealizationDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                    if(localDate.equals(comparationDate.minusDays(days))) {
+                        days+=1;
                     }
                 }
+                return new ApiResponse<>(HttpStatus.OK.value(), MessageRequest.SUCCESS.getMessage(), days);
+            } else {
+                return new ApiResponse<>(HttpStatus.OK.value(), MessageRequest.SUCCESS.getMessage(), 0);
             }
-            return new ApiResponse<>(HttpStatus.OK.value(), MessageRequest.SUCCESS.getMessage(), consecutive);
-        }
-        catch (HttpServerErrorException.InternalServerError e) {
+        } catch (HttpServerErrorException.InternalServerError e) {
             e.printStackTrace();
             return new ApiResponse<>(500, MessageRequest.INTERNAL_SERVER_ERROR.getMessage(), null);
         }
-
     }
 }
