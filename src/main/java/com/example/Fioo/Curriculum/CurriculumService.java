@@ -59,7 +59,7 @@ public class CurriculumService {
             if (payload.get(0).getRealizationDate().getMonth() + 1 == LocalDate.now().getMonthValue() && LocalDate.now().getYear() == payload.get(0).getRealizationDate().getYear()) {
                 consecutive = 1;
                 for (Curriculum c : payload) {
-                    if (c.getRealizationDate().getDay() + 1 == first.getDay() + 1) {
+                    if (c.getRealizationDate().getDay() + 1 == c.getRealizationDate().getDay() + 1) {
                         consecutive += 1;
                     }
                 }
