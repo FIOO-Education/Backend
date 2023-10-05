@@ -1,5 +1,5 @@
 #BUILD
-FROM maven:3.8.3-openjdk-17 AS BUILD
+FROM maven:3.8.3-openjdk-19 AS BUILD
 
 COPY . .
 
