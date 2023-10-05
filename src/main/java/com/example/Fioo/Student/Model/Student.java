@@ -33,7 +33,6 @@ public class Student {
 
     public Student(StudentInsertDto sto) {
         this.username = sto.username();
-        this.educationLevel = sto.educationLevel();
         this.cognitiveLevel = sto.cognitiveLevel();
         this.image = sto.image();
         this.codGuardian = sto.codGuardian();
