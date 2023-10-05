@@ -8,10 +8,10 @@ public record PostGuardianDTO(
         @NotBlank(message = "name should not blank")
         String guardianName,
         @NotBlank(message = "Email should not blank")
-        @Email
+        @Email(message = "Email must have follow the pattern of an email")
         String email,
         @NotBlank(message = "CPF should not blank")
-        @Pattern(regexp = "\\d{11}")
+        @Pattern(regexp = "\\d{11}", message = "CPF must have 11 digits")
         String cpf,
         @NotBlank(message = "Phone should not blank")
         String phone,
