@@ -1,5 +1,5 @@
 #BUILD
-maven:3.9-amazoncorretto-19 AS BUILD
+FROM maven:3.9-amazoncorretto-19 AS BUILD
 
 COPY . .
 
