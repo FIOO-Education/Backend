@@ -1,6 +1,6 @@
 package com.example.Fioo.Guardian;
 
-import com.example.Fioo.Guardian.Dto.GetGuardianDTO;
+import com.example.Fioo.ApiResponse;
 import com.example.Fioo.Guardian.Dto.PostGuardianDTO;
 import com.example.Fioo.Guardian.Model.Guardian;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,26 +16,12 @@ public class GuardianController {
     @Autowired
     private GuardianService guardianService;
     @PostMapping("")
-    public ResponseEntity<Guardian> insertGuardian(@RequestBody @Valid PostGuardianDTO postGuardianDTO) {
-        try {
-            return ResponseEntity.ok(guardianService.insertGuardian(postGuardianDTO));
-        } catch (Exception err) {
-            return ResponseEntity.badRequest().body(new Guardian(postGuardianDTO));
-        }
-
+    public ApiResponse<Guardian> insertGuardian(@RequestBody @Valid PostGuardianDTO postGuardianDTO) {
+        return guardianService.insertGuardian(postGuardianDTO);
     }
 
     @GetMapping("")
-    public ResponseEntity<List<Guardian>> getGuardians() {
-        try {
-            return ResponseEntity.ok(guardianService.getAllGuardians());
-        } catch (Exception err) {
-            return ResponseEntity.notFound().build();
-        }
-    }
-
-    @GetMapping("/teste")
-    public ResponseEntity<List<GetGuardianDTO>> getGuardiansDto() {
-        return ResponseEntity.ok(guardianService.getGuardians());
+    public ApiResponse<List<Guardian>> getGuardians() {
+        return guardianService.getAllGuardians();
     }
 }

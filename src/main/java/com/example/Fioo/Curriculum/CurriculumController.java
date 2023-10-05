@@ -27,13 +27,8 @@ public class CurriculumController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Optional<Curriculum>> getCurriculumByID(@PathVariable Long id) {
-        Optional<Curriculum> payload = curriculumService.getCurriculumByID(id);
-        if(payload.isPresent()) {
-            return ResponseEntity.ok(payload);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+    public ApiResponse<Curriculum> getCurriculumByID(@PathVariable Long id) {
+        return curriculumService.getCurriculumByID(id);
     }
 
     @GetMapping("/student/{id}")
