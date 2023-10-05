@@ -25,6 +25,7 @@ public class Loginlog {
     private String actName;
 
     @Column(name = "actdate")
+    @Transient
     private Timestamp actDate;
 
     public Loginlog(LoginLogInsertDto liDto) {
