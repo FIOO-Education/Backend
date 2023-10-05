@@ -5,19 +5,19 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 
 public record PostGuardianDTO(
-        @NotBlank
+        @NotBlank(message = "name should not blank")
         String guardianName,
-        @NotBlank
+        @NotBlank(message = "Email should not blank")
         @Email
         String email,
-        @NotBlank
+        @NotBlank(message = "CPF should not blank")
         @Pattern(regexp = "\\d{11}")
         String cpf,
-        @NotBlank
+        @NotBlank(message = "Phone should not blank")
         String phone,
-        @NotBlank
+        @NotBlank(message = "Password hash should not blank")
         String passwordHash,
-        @NotBlank
+        @NotBlank (message = "Kinship should not blank")
         String kinship
 ) {
 }

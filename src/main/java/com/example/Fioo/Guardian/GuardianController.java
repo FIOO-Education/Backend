@@ -1,6 +1,5 @@
 package com.example.Fioo.Guardian;
 
-import com.example.Fioo.Guardian.Dto.GetGuardianDTO;
 import com.example.Fioo.Guardian.Dto.PostGuardianDTO;
 import com.example.Fioo.Guardian.Model.Guardian;
 import org.springframework.beans.factory.annotation.Autowired;

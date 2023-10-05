@@ -6,15 +6,13 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 public record StudentInsertDto(
-        @NotBlank
+        @NotBlank(message = "Username should not blank")
         String username,
-        @NotBlank
-        String educationLevel,
-        @NotBlank
+        @NotBlank(message = "Cognitive Level should not blank")
         StudentLevel cognitiveLevel,
-        @NotBlank
+        @NotBlank(message = "CPF should not blank")
         String image,
-        @NotNull
+        @NotNull(message = "CPF should not blank")
         Long codGuardian
 ) {
 }

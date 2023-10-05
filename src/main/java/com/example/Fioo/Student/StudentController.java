@@ -38,7 +38,7 @@ public class StudentController {
     }
 
     @GetMapping("/{email}")
-    public ResponseEntity<Optional<Student>> getStudent(@PathVariable String email) {
-        return ResponseEntity.ok(studentService.getStudentByEmail(email));
+    public ApiResponse<Student> getStudent(@PathVariable String email) {
+        return studentService.getStudentByEmail(email);
     }
 }
