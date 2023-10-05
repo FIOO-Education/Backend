@@ -2,6 +2,7 @@ package com.example.Fioo.Curriculum;
 
 import com.example.Fioo.ApiResponse;
 import com.example.Fioo.Curriculum.Model.Curriculum;
+import com.example.Fioo.MessageRequest;
 import com.sun.net.httpserver.HttpServer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,30 +24,46 @@ public class CurriculumService {
     }
     public ApiResponse<List<Curriculum>> getAll() {
         try {
-            return new ApiResponse(200, "success", curriculumRepository.findAll());
+            return new ApiResponse(HttpStatus.OK.value(), MessageRequest.SUCCESS.getMessage(), curriculumRepository.findAll());
         } catch (HttpServerErrorException.InternalServerError error) {
-            return new ApiResponse<>(500, "Internal Server Error", null);
+            return new ApiResponse<>(HttpStatus.INTERNAL_SERVER_ERROR.value(), MessageRequest.INTERNAL_SERVER_ERROR.getMessage(), null);
         }
     }
 
-    public Optional<Curriculum> getCurriculumByID(Long id) {
-        return curriculumRepository.findById(id);
+    public ApiResponse<Curriculum> getCurriculumByID(Long id) {
+        try {
+            Optional<Curriculum> curriculum = curriculumRepository.findById(id);
+            if(curriculum.isPresent()){
+                return new ApiResponse<>(HttpStatus.OK.value(), MessageRequest.SUCCESS.getMessage(), curriculum.get());
+            }
+            else {
+                return new ApiResponse<>(HttpStatus.OK.value(), MessageRequest.SUCCESS.getMessage(), null);
+            }
+        }
+        catch (HttpClientErrorException.BadRequest e){
+            e.printStackTrace();
+            return new ApiResponse<>(HttpStatus.BAD_REQUEST.value(), MessageRequest.BAD_REQUEST.getMessage(),null);
+        }
+        catch (HttpServerErrorException.InternalServerError e){
+            e.printStackTrace();
+            return new ApiResponse<>(HttpStatus.INTERNAL_SERVER_ERROR.value(), MessageRequest.INTERNAL_SERVER_ERROR.getMessage(), null);
+        }
     }
 
     public ApiResponse<List<Curriculum>> getStudentCurriculum(Long id) {
         List<Curriculum> arr = curriculumRepository.findAllByCodStudent(id);
         if(arr.size() > 0) {
             try {
-                return new ApiResponse<>(HttpStatus.OK.value(), "Success", arr);
+                return new ApiResponse<>(HttpStatus.OK.value(), MessageRequest.SUCCESS.getMessage(), arr);
             } catch (HttpClientErrorException.NotFound e) {
-                return new ApiResponse<>(HttpStatus.NOT_FOUND.value(), "Not found", null);
+                return new ApiResponse<>(HttpStatus.NOT_FOUND.value(), MessageRequest.DATA_NOT_FOUND.getMessage(), null);
             } catch (HttpClientErrorException.BadRequest e) {
-                return new ApiResponse<>(HttpStatus.BAD_REQUEST.value(), "Invalid id type", null);
+                return new ApiResponse<>(HttpStatus.BAD_REQUEST.value(), MessageRequest.BAD_REQUEST.getMessage(), null);
             } catch (Exception e) {
-                return new ApiResponse<>(HttpStatus.INTERNAL_SERVER_ERROR.value(), "Internal Server Error", null);
+                return new ApiResponse<>(HttpStatus.INTERNAL_SERVER_ERROR.value(), MessageRequest.INTERNAL_SERVER_ERROR.getMessage(), null);
             }
         } else {
-            return new ApiResponse<>(HttpStatus.OK.value(), "Data not found :(", arr);
+            return new ApiResponse<>(HttpStatus.OK.value(), MessageRequest.SUCESS_NULL.getMessage(), arr);
         }
 
     }
@@ -64,12 +81,11 @@ public class CurriculumService {
                     }
                 }
             }
-
-            return new ApiResponse<>(HttpStatus.OK.value(), "Success", consecutive);
+            return new ApiResponse<>(HttpStatus.OK.value(), MessageRequest.SUCCESS.getMessage(), consecutive);
         }
         catch (HttpServerErrorException.InternalServerError e) {
             e.printStackTrace();
-            return new ApiResponse<>(500, "Internal Server Error", null);
+            return new ApiResponse<>(500, MessageRequest.INTERNAL_SERVER_ERROR.getMessage(), null);
         }
 
     }
