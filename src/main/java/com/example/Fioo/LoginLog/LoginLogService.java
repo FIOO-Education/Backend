@@ -41,7 +41,7 @@ public class LoginLogService {
 
     protected ApiResponse<Loginlog> registerLoginLog(LoginLogInsertDto logInsertDto){
         try {
-            return new ApiResponse<>(HttpStatus.OK.value(), MessageRequest.SUCCESS.getMessage(), new Loginlog(logInsertDto));
+            return new ApiResponse<>(HttpStatus.OK.value(), MessageRequest.SUCCESS.getMessage(), repo.save(new Loginlog(logInsertDto)));
         } catch (HttpClientErrorException.BadRequest e) {
             e.printStackTrace();
             return new ApiResponse<>(HttpStatus.BAD_REQUEST.value(), MessageRequest.BAD_REQUEST.getMessage(), null);

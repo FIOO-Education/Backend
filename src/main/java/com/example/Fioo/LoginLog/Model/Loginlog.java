@@ -5,6 +5,8 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -25,7 +27,8 @@ public class Loginlog {
     private String actName;
 
     @Column(name = "actdate")
-    private Timestamp actDate;
+    @Transient
+    private LocalDateTime actDate;
 
     public Loginlog(LoginLogInsertDto liDto) {
         this.codStudent = liDto.codStudent();

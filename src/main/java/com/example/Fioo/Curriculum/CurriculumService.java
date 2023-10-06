@@ -4,7 +4,9 @@ import com.example.Fioo.ApiResponse;
 import com.example.Fioo.Curriculum.Model.Curriculum;
 import com.example.Fioo.MessageRequest;
 import com.sun.net.httpserver.HttpServer;
+import org.hibernate.type.descriptor.DateTimeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cglib.core.Local;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
@@ -13,6 +15,8 @@ import org.springframework.web.client.HttpServerErrorException;
 import java.net.http.HttpResponse;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.temporal.TemporalAccessor;
 import java.util.*;
 
 @Service
@@ -68,25 +72,5 @@ public class CurriculumService {
 
     }
     //ConsecutiveDaysReponse
-    public ApiResponse<Integer> getConsecutiveDays(Long id) {
-        try {
-            List<Curriculum> payload = curriculumRepository.findAllByCodStudentOrderByRealizationDate(id);
-            int consecutive = 0;
 
-            if (payload.get(0).getRealizationDate().getMonth() + 1 == LocalDate.now().getMonthValue() && LocalDate.now().getYear() == payload.get(0).getRealizationDate().getYear()) {
-                consecutive = 1;
-                for (Curriculum c : payload) {
-                    if (c.getRealizationDate().getDay() + 1 == c.getRealizationDate().getDay() + 1) {
-                        consecutive += 1;
-                    }
-                }
-            }
-            return new ApiResponse<>(HttpStatus.OK.value(), MessageRequest.SUCCESS.getMessage(), consecutive);
-        }
-        catch (HttpServerErrorException.InternalServerError e) {
-            e.printStackTrace();
-            return new ApiResponse<>(500, MessageRequest.INTERNAL_SERVER_ERROR.getMessage(), null);
-        }
-
-    }
 }
