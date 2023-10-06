@@ -72,28 +72,5 @@ public class CurriculumService {
 
     }
     //ConsecutiveDaysReponse
-    public ApiResponse<Integer> getConsecutiveDays(Long id) {
-        try {
-            List<Curriculum> payload = curriculumRepository.findAllByCodStudentOrderByRealizationDateDesc(id);
-            if(payload.size() > 0) {
-                Integer days = 0;
-                LocalDate comparationDate = payload.get(0).getRealizationDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-                if(!comparationDate.equals(LocalDate.now()) && !comparationDate.equals(LocalDate.now().minusDays(1))) {
-                    return new ApiResponse<>(HttpStatus.OK.value(), MessageRequest.SUCCESS.getMessage(), 0);
-                }
-                for (Curriculum c : payload) {
-                    LocalDate localDate = c.getRealizationDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-                    if(localDate.equals(comparationDate.minusDays(days))) {
-                        days+=1;
-                    }
-                }
-                return new ApiResponse<>(HttpStatus.OK.value(), MessageRequest.SUCCESS.getMessage(), days);
-            } else {
-                return new ApiResponse<>(HttpStatus.OK.value(), MessageRequest.SUCCESS.getMessage(), 0);
-            }
-        } catch (HttpServerErrorException.InternalServerError e) {
-            e.printStackTrace();
-            return new ApiResponse<>(500, MessageRequest.INTERNAL_SERVER_ERROR.getMessage(), null);
-        }
-    }
+
 }
