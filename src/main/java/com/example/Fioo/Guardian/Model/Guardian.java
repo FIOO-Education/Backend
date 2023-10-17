@@ -16,6 +16,7 @@ import lombok.ToString;
 public class Guardian {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "codguardian")
     private Long codGuardian;
     @Column(name = "guardianname")
     private String guardianName;

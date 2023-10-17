@@ -9,7 +9,7 @@ public record StudentInsertDto(
         @NotBlank(message = "Username should not blank")
         String username,
         @NotBlank(message = "Cognitive Level should not blank")
-        StudentLevel cognitiveLevel,
+        String cognitiveLevel,
         @NotBlank(message = "CPF should not blank")
         String image,
         @NotNull(message = "CPF should not blank")
