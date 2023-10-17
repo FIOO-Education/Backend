@@ -14,17 +14,17 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @Entity
+
 public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long codstudent;
     @Column(name = "username")
     private String username;
-    @Column(name = "educationlevel")
-
-    private String educationLevel;
+    @Column(name = "educationallevel")
+    private String educationalLevel;
     @Column(name = "cognitivelevel")
-    private StudentLevel cognitiveLevel;
+    private String cognitiveLevel;
     @Column(name = "image")
     private String image;
     @Column(name = "codguardian")

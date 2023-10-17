@@ -32,9 +32,4 @@ public class CurriculumController {
     public ApiResponse<List<Curriculum>> getStudentCurriculum(@PathVariable Long id) {
         return curriculumService.getStudentCurriculum(id);
     }
-
-    @GetMapping("/consecutiveDays/{id}")
-    public ApiResponse<Integer> getStudentConsecutiveDays(@PathVariable Long id) {
-        return curriculumService.getConsecutiveDays(id);
-    }
 }
