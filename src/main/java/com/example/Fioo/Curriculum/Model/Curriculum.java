@@ -12,6 +12,7 @@ import java.util.Optional;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
+
 public class Curriculum {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
