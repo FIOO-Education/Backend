@@ -3,10 +3,9 @@ package com.example.Fioo;
 public enum MessageRequest {
     SUCCESS("Success"),
     INTERNAL_SERVER_ERROR("Internal Server Error"),
-    INVALID_PATH_PARAMETER("Invalid Path Parameter"),
     DATA_NOT_FOUND("Data Not Found"),
     BAD_REQUEST("Bad Request :/"),
-    SUCESS_NULL("Success but data was not found");
+    SUCCESS_NULL("Success but data was not found");
 
     private String message;
 

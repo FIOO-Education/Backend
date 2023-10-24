@@ -59,7 +59,7 @@ public class StudentService {
             if(payload.isPresent()) {
                 return new ApiResponse<>(HttpStatus.OK.value(), MessageRequest.SUCCESS.getMessage(), repo.findStudentByCodGuardian(payload.get().getCodGuardian()));
             } else {
-                return new ApiResponse<>(HttpStatus.OK.value(), MessageRequest.DATA_NOT_FOUND.getMessage(), null);
+                return new ApiResponse<>(HttpStatus.OK.value(), MessageRequest.SUCCESS_NULL.getMessage(), null);
             }
         } catch (HttpClientErrorException.BadRequest e) {
             e.printStackTrace();

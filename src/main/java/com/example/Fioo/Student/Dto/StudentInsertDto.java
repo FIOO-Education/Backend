@@ -10,8 +10,6 @@ public record StudentInsertDto(
         String username,
         @NotBlank(message = "Cognitive Level should not blank")
         String cognitiveLevel,
-        @NotBlank(message = "CPF should not blank")
-        String image,
         @NotNull(message = "CPF should not blank")
         Long codGuardian
 ) {

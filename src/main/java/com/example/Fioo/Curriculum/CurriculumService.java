@@ -59,18 +59,17 @@ public class CurriculumService {
         if(arr.size() > 0) {
             try {
                 return new ApiResponse<>(HttpStatus.OK.value(), MessageRequest.SUCCESS.getMessage(), arr);
-            } catch (HttpClientErrorException.NotFound e) {
-                return new ApiResponse<>(HttpStatus.NOT_FOUND.value(), MessageRequest.DATA_NOT_FOUND.getMessage(), null);
             } catch (HttpClientErrorException.BadRequest e) {
                 return new ApiResponse<>(HttpStatus.BAD_REQUEST.value(), MessageRequest.BAD_REQUEST.getMessage(), null);
             } catch (Exception e) {
                 return new ApiResponse<>(HttpStatus.INTERNAL_SERVER_ERROR.value(), MessageRequest.INTERNAL_SERVER_ERROR.getMessage(), null);
             }
         } else {
-            return new ApiResponse<>(HttpStatus.OK.value(), MessageRequest.SUCESS_NULL.getMessage(), arr);
+            return new ApiResponse<>(HttpStatus.OK.value(), MessageRequest.SUCCESS_NULL.getMessage(), arr);
         }
-
     }
-    //ConsecutiveDaysReponse
-
+    //HASH MAP AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+    //HASH MAP AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+    //HASH MAP AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+    //HASH MAP AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 }
