@@ -40,7 +40,7 @@ public class GuardianService {
 
     public ApiResponse<List<Guardian>> getAllGuardians() {
         try {
-            return new ApiResponse<>(HttpStatus.OK.value(), MessageRequest.INTERNAL_SERVER_ERROR.getMessage(), repo.findAll());
+            return new ApiResponse<>(HttpStatus.OK.value(), MessageRequest.SUCCESS.getMessage(), repo.findAll());
         } catch (Exception e) {
             e.printStackTrace();
             return new ApiResponse<>(HttpStatus.INTERNAL_SERVER_ERROR.value(), MessageRequest.INTERNAL_SERVER_ERROR.getMessage(), null);

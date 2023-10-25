@@ -14,4 +14,6 @@ public interface CurriculumRepository extends JpaRepository<Curriculum, Long> {
     //public Curriculum getStudentGrade(Long id);
     List<Curriculum> findAllByCodStudent(Long codStudent);
     List<Curriculum> findAllByCodStudentOrderByRealizationDateDesc(Long codStudent);
+
+    Curriculum findByCodActivityAndCodStudent(Long codActivity, Long codStudent);
 }

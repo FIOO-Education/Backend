@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.HttpServerErrorException;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
@@ -31,5 +32,10 @@ public class CurriculumController {
     @GetMapping("/student/{id}")
     public ApiResponse<List<Curriculum>> getStudentCurriculum(@PathVariable Long id) {
         return curriculumService.getStudentCurriculum(id);
+    }
+    //precisa passar o codActivity na url e codStudent no body
+    @PatchMapping("/activity/{codActivity}")
+    public ApiResponse<Curriculum> updateCurriculum(@PathVariable Long codActivity, @RequestBody HashMap<String, String> hashMap) {
+        return curriculumService.updateCurriculum(codActivity, hashMap);
     }
 }
