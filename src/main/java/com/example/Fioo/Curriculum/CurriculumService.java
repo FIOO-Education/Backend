@@ -68,6 +68,44 @@ public class CurriculumService {
             return new ApiResponse<>(HttpStatus.OK.value(), MessageRequest.SUCCESS_NULL.getMessage(), arr);
         }
     }
+
+    public ApiResponse<Curriculum> updateCurriculum(Long codActivity,HashMap<String, String> hashMap) {
+        try {
+
+            Curriculum curriculum = curriculumRepository.findByCodActivityAndCodStudent(codActivity, Long.parseLong(hashMap.get("codStudent")));
+            if(curriculum == null) {
+                return new ApiResponse<>(HttpStatus.OK.value(), MessageRequest.SUCCESS_NULL.getMessage(), null);
+            }
+
+            hashMap.forEach((k, v) -> {
+                switch(k) {
+                    case "codStudent":
+                        curriculum.setCodStudent(Long.parseLong(v));
+                        break;
+
+                    case "codActivity":
+                        curriculum.setCodActivity(Long.parseLong(v));
+                        break;
+
+                    case "grade":
+                        curriculum.setGrade(Double.parseDouble(v));
+                        break;
+
+                    case "realizationDate":
+                        curriculum.setRealizationDate(new Date(v));
+                        break;
+                }
+                curriculumRepository.save(curriculum);
+            });
+            return new ApiResponse<>(HttpStatus.OK.value(), MessageRequest.SUCCESS_NULL.getMessage(), null);
+        } catch (HttpClientErrorException.BadRequest err) {
+            err.printStackTrace();
+            return new ApiResponse<>(HttpStatus.BAD_REQUEST.value(), MessageRequest.BAD_REQUEST.getMessage(), null);
+        } catch(HttpServerErrorException.InternalServerError err) {
+            err.printStackTrace();
+            return new ApiResponse<>(HttpStatus.INTERNAL_SERVER_ERROR.value(), MessageRequest.INTERNAL_SERVER_ERROR.getMessage(), null);
+        }
+    }
     //HASH MAP AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
     //HASH MAP AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
     //HASH MAP AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
