@@ -33,13 +33,13 @@ public class StudentService {
 
     public ApiResponse<Student> registerStudent(StudentInsertDto studentInsertDto){
         try {
-            return new ApiResponse<>(HttpStatus.OK.value(), "Success", new Student(studentInsertDto));
+            return new ApiResponse<>(HttpStatus.OK.value(), MessageRequest.SUCCESS.getMessage(), repo.save(new Student(studentInsertDto)));
         } catch (HttpClientErrorException.BadRequest e) {
             e.printStackTrace();
-            return new ApiResponse<>(HttpStatus.BAD_REQUEST.value(), "Invalid request body :/", null);
+            return new ApiResponse<>(HttpStatus.BAD_REQUEST.value(), MessageRequest.BAD_REQUEST.getMessage(), null);
         } catch (Exception e) {
             e.printStackTrace();
-            return new ApiResponse<>(HttpStatus.INTERNAL_SERVER_ERROR.value(), "Internal Server Error", null);
+            return new ApiResponse<>(HttpStatus.INTERNAL_SERVER_ERROR.value(), MessageRequest.INTERNAL_SERVER_ERROR.getMessage(), null);
         }
 
     }
