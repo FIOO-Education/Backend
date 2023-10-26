@@ -78,14 +78,6 @@ public class CurriculumService {
             }
             hashMap.forEach((k, v) -> {
                 switch(k) {
-                    case "codStudent":
-                        curriculum.setCodStudent(Long.parseLong(v));
-                        break;
-
-                    case "codActivity":
-                        curriculum.setCodActivity(Long.parseLong(v));
-                        break;
-
                     case "grade":
                         curriculum.setGrade(Double.parseDouble(v));
                         break;

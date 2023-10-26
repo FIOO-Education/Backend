@@ -1,10 +1,15 @@
 package com.example.Fioo.Curriculum.Model;
 
+import com.example.Fioo.Activities.Model.Activities;
+import com.example.Fioo.Student.Model.Student;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.Date;
-import java.util.Optional;
+
+import com.example.Fioo.Activities.*;
+import com.example.Fioo.Student.*;
 
 @Entity
 @Getter
@@ -18,8 +23,11 @@ public class Curriculum {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "codgrade")
     private Long codGrade;
-    @Column(name = "codactivity")
-    private Long codActivity;
+
+    @JsonProperty("activity")
+    @OneToOne()
+    @JoinColumn(name = "codactivity", referencedColumnName = "codactivity")
+    private Activities activity;
     @Column(name = "codstudent")
     private Long codStudent;
     @Column(name = "grade")
