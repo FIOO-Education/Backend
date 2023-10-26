@@ -19,7 +19,7 @@ public class CurriculumController {
     public CurriculumController(CurriculumService curriculumService) {
         this.curriculumService = curriculumService;
     }
-    @GetMapping("")
+    @GetMapping
     public ApiResponse<List<Curriculum>> getCurriculums() {
         return curriculumService.getAll();
     }
