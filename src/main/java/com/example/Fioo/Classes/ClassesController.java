@@ -4,6 +4,7 @@ import com.example.Fioo.ApiResponse;
 import com.example.Fioo.Classes.Model.Classes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,5 +21,10 @@ public class ClassesController {
     @GetMapping
     public ApiResponse<List<Classes>> getClasses() {
         return repo.getClasses();
+    }
+
+    @GetMapping("/{subject}")
+    public ApiResponse<List<Classes>> getClassesBySubject(@PathVariable String subject) {
+        return repo.getClassesBySubject(subject);
     }
 }
