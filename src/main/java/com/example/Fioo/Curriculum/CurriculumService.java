@@ -76,7 +76,6 @@ public class CurriculumService {
             if(curriculum == null) {
                 return new ApiResponse<>(HttpStatus.OK.value(), MessageRequest.SUCCESS_NULL.getMessage(), null);
             }
-
             hashMap.forEach((k, v) -> {
                 switch(k) {
                     case "codStudent":
