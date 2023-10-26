@@ -25,9 +25,8 @@ public class QuestionsService {
             List<Questions> payload = questionsRepository.getAllByCodActivity(codActivity);
             if (payload.size() > 0) {
                 return new ApiResponse<>(HttpStatus.OK.value(), MessageRequest.SUCCESS.getMessage(), payload);
-            } else {
-                return new ApiResponse<>(HttpStatus.OK.value(), MessageRequest.SUCCESS_NULL.getMessage(), null);
             }
+            return new ApiResponse<>(HttpStatus.OK.value(), MessageRequest.SUCCESS_NULL.getMessage(), null);
         } catch (HttpServerErrorException.InternalServerError err) {
             err.printStackTrace();
             return new ApiResponse<>(HttpStatus.INTERNAL_SERVER_ERROR.value(), MessageRequest.INTERNAL_SERVER_ERROR.getMessage(), null);
