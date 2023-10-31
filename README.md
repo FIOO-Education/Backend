@@ -27,3 +27,6 @@ Em activities temos uma para pegar uma atividade pelo código da aula
 
 Em alternatives temos uma para pegar uma alternativa pelo código da questão
 - {server}/api/alternatives/{id}
+
+Em actions temos como pegar a quantidade de dias consecutivos que um aluno fez uma tarefa pelo seu id
+- {server}/api/actions/consecutiveDays/{id}
