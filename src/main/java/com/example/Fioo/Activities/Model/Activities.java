@@ -1,6 +1,8 @@
 package com.example.Fioo.Activities.Model;
 
 import com.example.Fioo.Activities.Dto.ActivitiesRequestDto;
+import com.example.Fioo.Questions.Model.Questions;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -29,6 +31,11 @@ public class Activities {
 
     @Column(name = "codclass")
     private long codClass;
+
+    @JsonProperty("questions")
+    @ManyToOne
+    @JoinColumn(name = "codquestion", referencedColumnName = "codquestion")
+    private Questions questions;
 
     public Activities(ActivitiesRequestDto a) {
         this.title = a.title();
