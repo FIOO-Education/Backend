@@ -55,8 +55,8 @@ public class ActivitiesService {
         try {
             if(payload.size() > 0) {
                 for(Activities activities: payload) {
-                    Long codActivity = activities.getCodActivity();
-                    List<Questions> questions = questionsRepository.getAllByCodActivity(codActivity);
+                    System.out.println(activities.getCodActivity());
+                    List<Questions> questions = questionsRepository.getAllByCodActivity(activities.getCodActivity());
                     activities.setQuestionsList(questions);
 
                     for(Questions question: questions) {

@@ -23,7 +23,7 @@ public class Questions {
     @Column(name = "question")
     private String question;
 
-    @Column(name = "codActivity")
+    @Column(name = "codactivity")
     private Long codActivity;
 
     @OneToMany
