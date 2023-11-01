@@ -27,9 +27,9 @@ public class AlternativesService {
         }
     }
 
-    public ApiResponse<List<Alternatives>> getAlternativesByCodQuestion(Long codQuestion) {
+    public ApiResponse<List<Alternatives>> getAlternativesByCodActivity(Long codActivity) {
         try {
-            return new ApiResponse<>(HttpStatus.OK.value(), MessageRequest.SUCCESS.getMessage(), alternativesRepository.findAllByCodQuestion(codQuestion));
+            return new ApiResponse<>(HttpStatus.OK.value(), MessageRequest.SUCCESS.getMessage(), alternativesRepository.findAllByCodActivity(codActivity));
         } catch (HttpClientErrorException.BadRequest err) {
             err.printStackTrace();
             return new ApiResponse<>(HttpStatus.BAD_REQUEST.value(), MessageRequest.BAD_REQUEST.getMessage(), null);
