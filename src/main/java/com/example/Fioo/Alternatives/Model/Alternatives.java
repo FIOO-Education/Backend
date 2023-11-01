@@ -13,15 +13,15 @@ import lombok.Setter;
 @Setter
 public class Alternatives {
     @Id
-    @Column(name = "codalternative")
+    @Column(name = "codAlternative")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String codAlternative;
+    private Long codAlternative;
 
     @Column(name = "alternative")
-    private String alternavite;
+    private String alternative;
 
     @Column(name = "correct")
-    private boolean correct;
+    private Boolean correct;
 
     @Column(name = "codQuestion")
     private Long codQuestion;
