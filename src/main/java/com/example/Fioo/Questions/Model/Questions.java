@@ -21,6 +21,8 @@ public class Questions {
     @Column(name = "question")
     private String question;
 
+    @Column(name = "codActivity")
+    private Long codActivity;
     @JsonProperty("alternatives")
     @ManyToOne
     @JoinColumn(name = "codalternative", referencedColumnName = "codalternative")
