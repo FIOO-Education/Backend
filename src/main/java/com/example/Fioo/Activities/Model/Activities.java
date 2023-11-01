@@ -9,6 +9,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
@@ -32,10 +34,14 @@ public class Activities {
     @Column(name = "codclass")
     private long codClass;
 
-    @JsonProperty("questions")
-    @ManyToOne
-    @JoinColumn(name = "codquestion", referencedColumnName = "codquestion")
-    private Questions questions;
+//    @JsonProperty("questions")
+//    @ManyToOne
+//    @JoinColumn(name = "codquestion", referencedColumnName = "codquestion")
+//    private Questions questions;
+//    @JsonProperty("questions")
+
+    @OneToMany
+    private List<Questions> questionsList;
 
     public Activities(ActivitiesRequestDto a) {
         this.title = a.title();
