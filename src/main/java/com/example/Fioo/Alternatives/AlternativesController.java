@@ -21,8 +21,8 @@ public class AlternativesController {
         return alternativesService.getAll();
     }
 
-    @GetMapping("/{codQuestion}")
-    public ApiResponse<List<Alternatives>> getAlterativesByCodQuestion(@PathVariable Long codQuestion) {
-        return alternativesService.getAlternativesByCodQuestion(codQuestion);
+    @GetMapping("/{codActivity}")
+    public ApiResponse<List<Alternatives>> getAlterativesByCodQuestion(@PathVariable Long codActivity) {
+        return alternativesService.getAlternativesByCodActivity(codActivity);
     }
 }
