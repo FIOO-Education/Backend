@@ -8,6 +8,8 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.util.List;
+
 @AllArgsConstructor
 @Getter
 @Setter
@@ -23,9 +25,8 @@ public class Questions {
 
     @Column(name = "codActivity")
     private Long codActivity;
-    @JsonProperty("alternatives")
-    @ManyToOne
-    @JoinColumn(name = "codalternative", referencedColumnName = "codalternative")
-    private Alternatives alternatives;
+
+    @OneToMany
+    private List<Alternatives> alternatives;
     public Questions() {}
 }
