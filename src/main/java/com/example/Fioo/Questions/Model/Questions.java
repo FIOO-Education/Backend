@@ -1,5 +1,7 @@
 package com.example.Fioo.Questions.Model;
 
+import com.example.Fioo.Alternatives.Model.Alternatives;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -19,8 +21,9 @@ public class Questions {
     @Column(name = "question")
     private String question;
 
-    @Column(name = "codactivity")
-    private Long codActivity;
-
+    @JsonProperty("alternatives")
+    @ManyToOne
+    @JoinColumn(name = "codalternative", referencedColumnName = "codalternative")
+    private Alternatives alternatives;
     public Questions() {}
 }

@@ -31,5 +31,4 @@ public class ActivitiesController {
     public ApiResponse<List<Activities>> getActivitiesByCodClass(@PathVariable Long codClass) {
         return activitiesService.getActivitiesByCodClass(codClass);
     }
-
 }
