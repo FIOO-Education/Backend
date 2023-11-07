@@ -54,21 +54,26 @@ public class ActivitiesService {
         List<Activities> payload = activitiesRepository.findAllByCodClass(codClass);
         try {
             if(payload.size() > 0) {
-                for(Activities activities: payload) {
-                    System.out.println(activities.getCodActivity());
-                    List<Questions> questions = questionsRepository.getAllByCodActivity(activities.getCodActivity());
-                    activities.setQuestionsList(questions);
-
-                    for(Questions question: questions) {
-                        List<Alternatives> alternatives = alternativesRepository.findAllByCodQuestion(question.getCodQuestion());
-                        question.setAlternatives(alternatives);
-                    }
-                }
-
                 return new ApiResponse<>(HttpStatus.OK.value(), MessageRequest.SUCCESS.getMessage(), payload);
             } else {
                 return new ApiResponse<>(HttpStatus.OK.value(), MessageRequest.SUCCESS_NULL.getMessage(), null);
             }
+        } catch (HttpClientErrorException.BadRequest err) {
+            err.printStackTrace();
+            return new ApiResponse<>(HttpStatus.BAD_REQUEST.value(), MessageRequest.BAD_REQUEST.getMessage(), null);
+        } catch (HttpServerErrorException.InternalServerError err) {
+            err.printStackTrace();
+            return new ApiResponse<>(HttpStatus.INTERNAL_SERVER_ERROR.value(), MessageRequest.INTERNAL_SERVER_ERROR.getMessage(), null);
+        }
+    }
+
+    public ApiResponse<List<Activities>> getActivitiesWhereCodClassIsNull() {
+        try {
+            List<Activities> payload = activitiesRepository.findAllByCodClassIsNull();
+            if(payload.size() > 0) {
+                return new ApiResponse<>(HttpStatus.OK.value(), MessageRequest.SUCCESS.getMessage(), payload);
+            }
+            return new ApiResponse<>(HttpStatus.OK.value(), MessageRequest.SUCCESS_NULL.getMessage(), null);
         } catch (HttpClientErrorException.BadRequest err) {
             err.printStackTrace();
             return new ApiResponse<>(HttpStatus.BAD_REQUEST.value(), MessageRequest.BAD_REQUEST.getMessage(), null);
