@@ -34,4 +34,7 @@ public class Curriculum {
     private double grade;
     @Column(name = "realizationdate")
     private Date realizationDate;
+
+    @Column(name = "game")
+    private boolean game;
 }
