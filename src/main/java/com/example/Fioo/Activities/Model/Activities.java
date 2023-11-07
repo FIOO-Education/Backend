@@ -24,10 +24,6 @@ public class Activities {
 
     @Column(name = "title")
     private String title;
-
-    @Column(name = "image")
-    private String image;
-
     @Column(name = "subject")
     private String subject;
 

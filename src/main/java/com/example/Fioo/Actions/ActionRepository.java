@@ -9,4 +9,6 @@ import java.util.List;
 @Repository
 public interface ActionRepository extends JpaRepository<Action, Long> {
     List<Action> findAllByCodStudentOrderByActionDateDesc(Long id);
+
+    List<Action> findAllByCodStudentAndCodClassIsNullOrderByActionDateDesc(Long codStudent);
 }

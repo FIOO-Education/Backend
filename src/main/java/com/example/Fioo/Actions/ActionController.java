@@ -31,4 +31,9 @@ public class ActionController {
     public ApiResponse<Action> insertAction(@RequestBody @Valid PostActionDto postActionDto) {
         return actionService.insertAction(postActionDto);
     }
+
+    @GetMapping("/{id}")
+    public ApiResponse<List<Action>> getRecentGamesOrderByDate(@PathVariable Long id) {
+        return actionService.getRecentGamesOrderByDate(id);
+    }
 }

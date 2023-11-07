@@ -28,7 +28,6 @@ public class Student {
     @Column(name = "image")
     private String image;
     @Column(name = "codguardian")
-
     private Long codGuardian;
 
     public Student(StudentInsertDto sto) {
