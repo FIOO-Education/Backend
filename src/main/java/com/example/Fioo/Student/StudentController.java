@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.security.Guard;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
@@ -40,5 +41,10 @@ public class StudentController {
     @GetMapping("/{email}")
     public ApiResponse<Student> getStudent(@PathVariable String email) {
         return studentService.getStudentByEmail(email);
+    }
+
+    @PatchMapping("/{codStudent}")
+    public ApiResponse<Student> updateStudent(@PathVariable Long codStudent, @RequestBody HashMap<String, String> hashMap) {
+        return studentService.updateStudent(codStudent, hashMap);
     }
 }
