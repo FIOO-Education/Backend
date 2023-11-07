@@ -23,6 +23,9 @@ public class Questions {
     @Column(name = "question")
     private String question;
 
+    @Column(name = "image")
+    private String image;
+
     @Column(name = "codactivity")
     private Long codActivity;
 
