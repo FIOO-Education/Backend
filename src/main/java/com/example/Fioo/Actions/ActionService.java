@@ -67,4 +67,16 @@ public class ActionService {
             return new ApiResponse<>(HttpStatus.INTERNAL_SERVER_ERROR.value(), MessageRequest.INTERNAL_SERVER_ERROR.getMessage(), null);
         }
     }
+
+    public ApiResponse<List<Action>> getRecentGamesOrderByDate(Long id) {
+        try {
+            return new ApiResponse<>(HttpStatus.OK.value(), MessageRequest.SUCCESS.getMessage(), repo.findAllByCodStudentAndCodClassIsNullOrderByActionDateDesc(id));
+        } catch (HttpClientErrorException.BadRequest e) {
+            e.printStackTrace();
+            return new ApiResponse<>(HttpStatus.BAD_REQUEST.value(), MessageRequest.BAD_REQUEST.getMessage(), null);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ApiResponse<>(HttpStatus.INTERNAL_SERVER_ERROR.value(), MessageRequest.INTERNAL_SERVER_ERROR.getMessage(), null);
+        }
+    }
 }
