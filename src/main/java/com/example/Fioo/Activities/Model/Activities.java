@@ -34,11 +34,10 @@ public class Activities {
     @Column(name = "codclass")
     private Long codClass;
 
-//    @JsonProperty("questions")
-//    @ManyToOne
-//    @JoinColumn(name = "codquestion", referencedColumnName = "codquestion")
-//    private Questions questions;
-//    @JsonProperty("questions")
+    @JsonProperty("questions")
+    @OneToMany
+    @JoinColumn(name = "codactivity", referencedColumnName = "codactivity")
+    private List<Questions> questions;
 
     public Activities(ActivitiesRequestDto a) {
         this.title = a.title();

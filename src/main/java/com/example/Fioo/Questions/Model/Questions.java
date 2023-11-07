@@ -27,6 +27,8 @@ public class Questions {
     private Long codActivity;
 
     @OneToMany
+    @JsonProperty("alternatives")
+    @JoinColumn(name = "codquestion", referencedColumnName = "codquestion")
     private List<Alternatives> alternatives;
     public Questions() {}
 }
