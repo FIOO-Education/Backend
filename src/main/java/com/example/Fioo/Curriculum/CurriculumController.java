@@ -1,6 +1,7 @@
 package com.example.Fioo.Curriculum;
 
 import com.example.Fioo.ApiResponse;
+import com.example.Fioo.Curriculum.Dto.CurriculumPostDto;
 import com.example.Fioo.Curriculum.Model.Curriculum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -37,5 +38,10 @@ public class CurriculumController {
     @PatchMapping("/activity/{codActivity}")
     public ApiResponse<Curriculum> updateCurriculum(@PathVariable Long codActivity, @RequestBody HashMap<String, String> hashMap) {
         return curriculumService.updateCurriculum(codActivity, hashMap);
+    }
+
+    @PostMapping
+    public ApiResponse<Curriculum> insertCurriculum(@RequestBody CurriculumPostDto curriculumPostDto) {
+        return curriculumService.postCurriculum(curriculumPostDto);
     }
 }
