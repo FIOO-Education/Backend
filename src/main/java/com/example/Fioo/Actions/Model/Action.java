@@ -1,6 +1,8 @@
 package com.example.Fioo.Actions.Model;
 
 import com.example.Fioo.Actions.Dto.PostActionDto;
+import com.example.Fioo.Activities.Model.Activities;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -21,6 +23,11 @@ public class Action {
     private Date actionDate;
     @Column(name = "codstudent")
     private Long codStudent;
+
+    @JsonProperty(namespace = "Activity")
+    @OneToOne
+    @JoinColumn()
+    private Activities activities;
     @Column(name = "codclass")
     private Long codClass;
     @Column(name = "codactivity")
@@ -30,6 +37,6 @@ public class Action {
         this.actionDate = p.actionDate();
         this.codStudent = p.codStudent();
         this.codClass = p.codClass();
-        this.codActivity = p.codActivity();
+        this.activities = p.activity();
     }
 }
