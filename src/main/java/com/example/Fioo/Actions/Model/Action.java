@@ -26,12 +26,10 @@ public class Action {
 
     @JsonProperty(namespace = "Activity")
     @OneToOne
-    @JoinColumn()
+    @JoinColumn(name = "codactivity", referencedColumnName = "codactivity")
     private Activities activities;
     @Column(name = "codclass")
     private Long codClass;
-    @Column(name = "codactivity")
-    private Long codActivity;
 
     public Action(PostActionDto p) {
         this.actionDate = p.actionDate();
