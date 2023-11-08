@@ -1,6 +1,7 @@
 package com.example.Fioo.Curriculum.Model;
 
 import com.example.Fioo.Activities.Model.Activities;
+import com.example.Fioo.Curriculum.Dto.CurriculumPostDto;
 import com.example.Fioo.Student.Model.Student;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
@@ -17,13 +18,13 @@ import com.example.Fioo.Student.*;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-
 public class Curriculum {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "codgrade")
     private Long codGrade;
-
+    @Column(name = "codactivity")
+    private Long codActivity;
     @JsonProperty("activity")
     @OneToOne()
     @JoinColumn(name = "codactivity", referencedColumnName = "codactivity")
@@ -37,4 +38,12 @@ public class Curriculum {
 
     @Column(name = "game")
     private boolean game;
+
+    public Curriculum(CurriculumPostDto c) {
+        this.codActivity = c.codActivity();
+        this.codStudent = c.codStudent();
+        this.game = c.game();
+        this.realizationDate = c.realizationDate();
+        this.game = c.game();
+    }
 }
