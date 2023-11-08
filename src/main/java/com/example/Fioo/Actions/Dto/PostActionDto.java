@@ -1,5 +1,7 @@
 package com.example.Fioo.Actions.Dto;
 
+import com.example.Fioo.Activities.Model.Activities;
+
 import javax.validation.constraints.NotBlank;
 import java.util.Date;
 
@@ -11,6 +13,6 @@ public record PostActionDto(
         @NotBlank(message = "Cod of the class should not be blank")
         Long codClass,
         @NotBlank(message = "Cod of the Activity should not be blank")
-        Long codActivity
+        Activities activity
 ) {
 }

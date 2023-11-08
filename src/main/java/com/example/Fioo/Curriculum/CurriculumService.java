@@ -1,6 +1,7 @@
 package com.example.Fioo.Curriculum;
 
 import com.example.Fioo.ApiResponse;
+import com.example.Fioo.Curriculum.Dto.CurriculumPostDto;
 import com.example.Fioo.Curriculum.Model.Curriculum;
 import com.example.Fioo.MessageRequest;
 import com.sun.net.httpserver.HttpServer;
@@ -101,4 +102,16 @@ public class CurriculumService {
     //HASH MAP AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
     //HASH MAP AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
     //HASH MAP AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+
+    public ApiResponse<Curriculum> postCurriculum(CurriculumPostDto curriculumPostDto) {
+        try {
+            return new ApiResponse<>(HttpStatus.OK.value(), MessageRequest.SUCCESS.getMessage(), new Curriculum(curriculumPostDto));
+        } catch (HttpClientErrorException.BadRequest err) {
+            err.printStackTrace();
+            return new ApiResponse<>(HttpStatus.BAD_REQUEST.value(), MessageRequest.BAD_REQUEST.getMessage(), null);
+        } catch(HttpServerErrorException.InternalServerError err) {
+            err.printStackTrace();
+            return new ApiResponse<>(HttpStatus.INTERNAL_SERVER_ERROR.value(), MessageRequest.INTERNAL_SERVER_ERROR.getMessage(), null);
+        }
+    }
 }
