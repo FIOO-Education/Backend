@@ -37,7 +37,6 @@ public class Activities {
 
     public Activities(ActivitiesRequestDto a) {
         this.title = a.title();
-        this.image = a.image();
         this.subject = a.subject();
         this.codClass = a.codClass();
     }
