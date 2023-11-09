@@ -36,4 +36,9 @@ public class ActivitiesController {
     public ApiResponse<List<Activities>> getActivitiesWhereCodClassIsNull() {
         return activitiesService.getActivitiesWhereCodClassIsNull();
     }
+
+    @GetMapping("/id/{id}")
+    public ApiResponse<Activities> getActivityById(@PathVariable Long id) {
+        return activitiesService.getActivityById(id);
+    }
 }

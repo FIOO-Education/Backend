@@ -82,4 +82,16 @@ public class ActivitiesService {
             return new ApiResponse<>(HttpStatus.INTERNAL_SERVER_ERROR.value(), MessageRequest.INTERNAL_SERVER_ERROR.getMessage(), null);
         }
     }
+
+    public ApiResponse<Activities> getActivityById(Long id) {
+        try {
+            return new ApiResponse<>(HttpStatus.OK.value(), MessageRequest.SUCCESS.getMessage(), activitiesRepository.getById(id));
+        } catch (HttpClientErrorException.BadRequest err) {
+            err.printStackTrace();
+            return new ApiResponse<>(HttpStatus.BAD_REQUEST.value(), MessageRequest.BAD_REQUEST.getMessage(), null);
+        } catch (HttpServerErrorException.InternalServerError err) {
+            err.printStackTrace();
+            return new ApiResponse<>(HttpStatus.INTERNAL_SERVER_ERROR.value(), MessageRequest.INTERNAL_SERVER_ERROR.getMessage(), null);
+        }
+    }
 }
