@@ -18,6 +18,6 @@ public interface CurriculumRepository extends JpaRepository<Curriculum, Long> {
 
     @Query("SELECT c FROM Curriculum c WHERE c.grade > :minGrade")
     List<Curriculum> findCurriculumWithGradeGreaterThan(@Param("minGrade") double minGrade);
-    @Query("SELECT c FROM Curriculum c WHERE c.activity.codActivity = :codActivity AND c.codStudent = :codStudent")
+    @Query("SELECT c FROM Curriculum c WHERE c.codActivity = :codActivity AND c.codStudent = :codStudent")
     Curriculum findByCodActivityAndCodStudent(@Param("codActivity") Long codActivity, @Param("codStudent") Long codStudent);
 }
