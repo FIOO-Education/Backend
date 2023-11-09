@@ -105,7 +105,7 @@ public class CurriculumService {
 
     public ApiResponse<Curriculum> postCurriculum(CurriculumPostDto curriculumPostDto) {
         try {
-            return new ApiResponse<>(HttpStatus.OK.value(), MessageRequest.SUCCESS.getMessage(), new Curriculum(curriculumPostDto));
+            return new ApiResponse<>(HttpStatus.OK.value(), MessageRequest.SUCCESS.getMessage(), curriculumRepository.save(new Curriculum(curriculumPostDto)) );
         } catch (HttpClientErrorException.BadRequest err) {
             err.printStackTrace();
             return new ApiResponse<>(HttpStatus.BAD_REQUEST.value(), MessageRequest.BAD_REQUEST.getMessage(), null);
