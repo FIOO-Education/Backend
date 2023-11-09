@@ -36,8 +36,6 @@ No mobile, utilizamos as seguintes rotas:
 @GET("/api/student/{email}")
 Call<ApiResponse<Student>> getStudent(@Path("email") String email);
 
-    @POST("caminho")
-
     @POST("api/loginlog")
 
     @POST("api/student")
