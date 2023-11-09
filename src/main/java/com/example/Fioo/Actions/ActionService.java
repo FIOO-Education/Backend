@@ -25,6 +25,7 @@ public class ActionService {
     public ApiResponse<Integer> getConsecutiveDays(Long id) {
         try {
             List<Action> payload = repo.findAllByCodStudentOrderByActionDateDesc(id);
+            System.out.println(payload);
             if(payload.size() > 0) {
                 Integer days = 0;
                 LocalDate comparationDate = payload.get(0).getActionDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
