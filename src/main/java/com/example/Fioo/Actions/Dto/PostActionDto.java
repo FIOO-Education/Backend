@@ -13,6 +13,6 @@ public record PostActionDto(
         @NotBlank(message = "Cod of the class should not be blank")
         Long codClass,
         @NotBlank(message = "Cod of the Activity should not be blank")
-        Activities activity
+        Long codActivity
 ) {
 }

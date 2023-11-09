@@ -24,10 +24,8 @@ public class Action {
     @Column(name = "codstudent")
     private Long codStudent;
 
-    @JsonProperty(namespace = "Activity")
-    @OneToOne
-    @JoinColumn(name = "codactivity", referencedColumnName = "codactivity")
-    private Activities activities;
+    @Column(name = "codactivity")
+    private Long codActivity;
     @Column(name = "codclass")
     private Long codClass;
 
@@ -35,6 +33,6 @@ public class Action {
         this.actionDate = p.actionDate();
         this.codStudent = p.codStudent();
         this.codClass = p.codClass();
-        this.activities = p.activity();
+        this.codActivity = p.codActivity();
     }
 }

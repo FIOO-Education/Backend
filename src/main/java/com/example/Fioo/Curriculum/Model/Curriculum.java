@@ -25,11 +25,6 @@ public class Curriculum {
     private Long codGrade;
     @Column(name = "codactivity")
     private Long codActivity;
-    @JsonProperty("activity")
-    @OneToOne()
-    @JoinColumn(name = "codactivity", referencedColumnName = "codactivity")
-    @PrimaryKeyJoinColumn()
-    private Activities activity;
     @Column(name = "codstudent")
     private Long codStudent;
     @Column(name = "grade")
