@@ -25,10 +25,6 @@ public class Curriculum {
     private Long codGrade;
     @Column(name = "codactivity")
     private Long codActivity;
-    @JsonProperty("activity")
-    @OneToOne()
-    @JoinColumn(name = "codactivity", referencedColumnName = "codactivity")
-    private Activities activity;
     @Column(name = "codstudent")
     private Long codStudent;
     @Column(name = "grade")
@@ -44,6 +40,5 @@ public class Curriculum {
         this.codStudent = c.codStudent();
         this.game = c.game();
         this.realizationDate = c.realizationDate();
-        this.game = c.game();
     }
 }
