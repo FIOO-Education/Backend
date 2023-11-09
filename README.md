@@ -41,3 +41,4 @@ Call<ApiResponse<Student>> getStudent(@Path("email") String email);
     @POST("api/student")
 
     POST("api/guardian")
+    @GET ("api/student/{email}")
