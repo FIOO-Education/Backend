@@ -12,7 +12,6 @@ public record CurriculumPostDto(
         Long codActivity,
         Long codStudent,
         double grade,
-        Date realizationDate,
-        boolean game
+        Date realizationDate
 ) {
 }
