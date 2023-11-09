@@ -30,3 +30,16 @@ Em alternatives temos uma para pegar uma alternativa pelo código da questão
 
 Em actions temos como pegar a quantidade de dias consecutivos que um aluno fez uma tarefa pelo seu id
 - {server}/api/actions/consecutiveDays/{id}
+
+
+No mobile, utilizamos as seguintes rotas:
+@GET("/api/student/{email}")
+Call<ApiResponse<Student>> getStudent(@Path("email") String email);
+
+    @POST("caminho")
+
+    @POST("api/loginlog")
+
+    @POST("api/student")
+
+    POST("api/guardian")

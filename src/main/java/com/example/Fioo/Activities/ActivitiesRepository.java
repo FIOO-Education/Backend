@@ -1,5 +1,6 @@
 package com.example.Fioo.Activities;
 
+import com.example.Fioo.Actions.Model.Action;
 import com.example.Fioo.Activities.Model.Activities;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -14,4 +15,6 @@ public interface ActivitiesRepository extends JpaRepository<Activities, Long> {
 
     @Query("SELECT a FROM Activities a WHERE a.codClass IS NULL")
     List<Activities> findAllByCodClassIsNull();
+
+    Activities findByCodActivity(Long id);
 }
